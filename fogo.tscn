@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://g5nf84c05l3e"]
+
+[ext_resource type="Texture2D" uid="uid://bdl1agxkvvs4e" path="res://flame-lit-1.png.png" id="1_36til"]
+[ext_resource type="Script" uid="uid://dnhhofrtdk2ru" path="res://fogo.gd" id="1_s37p7"]
+[ext_resource type="Texture2D" uid="uid://dfbi8k86nlmfv" path="res://flame-lit-3.png.png" id="2_s37p7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvst4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_36til")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s37p7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s37p7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_36til")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_prn2k"]
+radius = 47.0
+height = 128.0
+
+[node name="fogo" type="StaticBody2D"]
+script = ExtResource("1_s37p7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(62.5, 58)
+scale = Vector2(0.545, 0.52)
+sprite_frames = SubResource("SpriteFrames_xvst4")
+frame = 3
+frame_progress = 0.160039
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(63, 64)
+shape = SubResource("CapsuleShape2D_prn2k")
