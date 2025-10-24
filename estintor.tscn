@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b44hax4ym128"]
+
+[ext_resource type="Texture2D" uid="uid://bt5037p4ryegc" path="res://imagem_2025-10-23_210607591-1.png (1).png" id="1_s1ohx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkfan"]
+size = Vector2(16, 33)
+
+[node name="Estintor" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(18, 19)
+scale = Vector2(0.0543131, 0.057508)
+texture = ExtResource("1_s1ohx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18, 16.5)
+shape = SubResource("RectangleShape2D_tkfan")
