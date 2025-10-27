@@ -54,7 +54,6 @@ script = ExtResource("1_s37p7")
 position = Vector2(62.5, 58)
 scale = Vector2(0.545, 0.52)
 sprite_frames = SubResource("SpriteFrames_xvst4")
-frame_progress = 0.0636661
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(63, 64)
