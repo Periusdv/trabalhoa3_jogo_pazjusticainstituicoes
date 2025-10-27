@@ -80,5 +80,5 @@ func do_super() -> void:
 		super_power = true
 		speed += 100
 		print("Poder ativado permanentemente!")
-		#$AnimatedSprite2D.animation = "super"
+		$AnimatedSprite2D.animation = "super"
 		#get_parent().change_music(true)

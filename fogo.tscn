@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://g5nf84c05l3e"]
+[gd_scene load_steps=8 format=3 uid="uid://g5nf84c05l3e"]
 
 [ext_resource type="Texture2D" uid="uid://bdl1agxkvvs4e" path="res://flame-lit-1.png.png" id="1_36til"]
 [ext_resource type="Script" uid="uid://dnhhofrtdk2ru" path="res://fogo.gd" id="1_s37p7"]
 [ext_resource type="Texture2D" uid="uid://dfbi8k86nlmfv" path="res://flame-lit-3.png.png" id="2_s37p7"]
+[ext_resource type="Texture2D" uid="uid://stsv2i7eukn7" path="res://flame-lit-1.png (1).png" id="4_prn2k"]
+[ext_resource type="Texture2D" uid="uid://cb3s5igmuwe81" path="res://flame-lit-2.png.png" id="5_6mikp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xvst4"]
 animations = [{
@@ -22,6 +24,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_prn2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6mikp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6mikp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_prn2k")
+}],
+"loop": true,
+"name": &"fogo_azul",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_prn2k"]
@@ -35,8 +54,7 @@ script = ExtResource("1_s37p7")
 position = Vector2(62.5, 58)
 scale = Vector2(0.545, 0.52)
 sprite_frames = SubResource("SpriteFrames_xvst4")
-frame = 3
-frame_progress = 0.160039
+frame_progress = 0.0636661
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(63, 64)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://btob2ibsxxka1"]
 
-[ext_resource type="Texture2D" uid="uid://dvqg2285ugenb" path="res://assets/background.png" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://bo3agc564g32n" path="res://player.tscn" id="2_aqk2v"]
+[ext_resource type="Texture2D" uid="uid://cw6sfec4db4n0" path="res://assets/Cidade1.png" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://bfv1ckpkmbpy7" path="res://ground.tscn" id="3_036b0"]
 [ext_resource type="AudioStream" uid="uid://bfs8eqbuc5xdy" path="res://assets/music.ogg" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://g5nf84c05l3e" path="res://fogo.tscn" id="5_036b0"]
@@ -10,22 +10,26 @@
 [node name="World" type="Node2D"]
 
 [node name="Ground" parent="." instance=ExtResource("3_036b0")]
-position = Vector2(511, 567)
+position = Vector2(512, 610)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1151.0
-offset_bottom = 648.0
-texture = ExtResource("1_tlwt5")
+offset_top = -646.0
+offset_right = 2304.0
+offset_bottom = 650.0
+texture = ExtResource("2_dwbse")
 
 [node name="Player" parent="." instance=ExtResource("2_aqk2v")]
-position = Vector2(55, 453)
+position = Vector2(58, 407)
 
 [node name="fogo" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(356, 393)
+position = Vector2(259, 157)
+
+[node name="fogo2" parent="." instance=ExtResource("5_036b0")]
+position = Vector2(747, -8)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_aqk2v")
 autoplay = true
 
 [node name="Estintor" parent="." instance=ExtResource("6_dwbse")]
-position = Vector2(199, 460)
+position = Vector2(241, 468)
