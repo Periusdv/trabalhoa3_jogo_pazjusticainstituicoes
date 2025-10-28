@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8rsxp602y075"]
+
+[ext_resource type="Texture2D" uid="uid://s3iws6h01opo" path="res://assets/FumacaExtintor.png" id="1_3w1b2"]
+[ext_resource type="Script" uid="uid://bgusnmct8k4bi" path="res://fumaça.gd" id="1_5rnpu"]
+[ext_resource type="Texture2D" uid="uid://c1pmm0bwbyn0k" path="res://assets/FumaçaExtintor.png" id="2_5rnpu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_32of0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3w1b2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5rnpu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_3w1b2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5rnpu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5rnpu"]
+radius = 40.1123
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3w1b2"]
+radius = 40.05
+
+[node name="fumaça" type="CharacterBody2D"]
+script = ExtResource("1_5rnpu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(41, 53)
+sprite_frames = SubResource("SpriteFrames_32of0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(49, 37)
+shape = SubResource("CircleShape2D_5rnpu")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(50, 36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+physics_interpolation_mode = 1
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_3w1b2")
