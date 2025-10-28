@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx0emexnv0tmu"]
+
+[ext_resource type="Texture2D" uid="uid://bcv5wonvgf7tv" path="res://assets/ChaoNovo.png" id="1_qcgc7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7wfd"]
+size = Vector2(405, 36)
+
+[node name="chaoMenor" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(197, -74)
+texture = ExtResource("1_qcgc7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(195, 18)
+shape = SubResource("RectangleShape2D_e7wfd")

@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://g5nf84c05l3e"]
+[gd_scene load_steps=6 format=3 uid="uid://g5nf84c05l3e"]
 
-[ext_resource type="Texture2D" uid="uid://bdl1agxkvvs4e" path="res://flame-lit-1.png.png" id="1_36til"]
 [ext_resource type="Script" uid="uid://dnhhofrtdk2ru" path="res://fogo.gd" id="1_s37p7"]
-[ext_resource type="Texture2D" uid="uid://dfbi8k86nlmfv" path="res://flame-lit-3.png.png" id="2_s37p7"]
 [ext_resource type="Texture2D" uid="uid://stsv2i7eukn7" path="res://flame-lit-1.png (1).png" id="4_prn2k"]
 [ext_resource type="Texture2D" uid="uid://cb3s5igmuwe81" path="res://flame-lit-2.png.png" id="5_6mikp"]
 
@@ -10,36 +8,24 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_36til")
+"texture": ExtResource("4_prn2k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_s37p7")
+"texture": ExtResource("5_6mikp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_s37p7")
+"texture": ExtResource("5_6mikp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("1_36til")
+"texture": ExtResource("4_prn2k")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_prn2k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_6mikp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_6mikp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_prn2k")
-}],
+"frames": [],
 "loop": true,
-"name": &"fogo_azul",
+"name": &"new_animation",
 "speed": 5.0
 }]
 

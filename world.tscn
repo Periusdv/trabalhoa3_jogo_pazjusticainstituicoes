@@ -1,38 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://btob2ibsxxka1"]
+[gd_scene load_steps=9 format=3 uid="uid://btob2ibsxxka1"]
 
+[ext_resource type="PackedScene" uid="uid://dx4oo34vh47qc" path="res://back_grond.tscn" id="1_dwbse"]
 [ext_resource type="PackedScene" uid="uid://bo3agc564g32n" path="res://player.tscn" id="2_aqk2v"]
-[ext_resource type="Texture2D" uid="uid://cw6sfec4db4n0" path="res://assets/Cidade1.png" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://bfv1ckpkmbpy7" path="res://ground.tscn" id="3_036b0"]
 [ext_resource type="AudioStream" uid="uid://bfs8eqbuc5xdy" path="res://assets/music.ogg" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://g5nf84c05l3e" path="res://fogo.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://b44hax4ym128" path="res://estintor.tscn" id="6_dwbse"]
+[ext_resource type="PackedScene" uid="uid://dx0emexnv0tmu" path="res://chao_menor.tscn" id="7_pkg7o"]
+[ext_resource type="PackedScene" uid="uid://pb0w02ytaa37" path="res://caixa.tscn" id="8_gbfbk"]
 
 [node name="World" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_top = -646.0
-offset_right = 2304.0
-offset_bottom = 650.0
-texture = ExtResource("2_dwbse")
+[node name="BackGrond" parent="." instance=ExtResource("1_dwbse")]
 
 [node name="Ground" parent="." instance=ExtResource("3_036b0")]
-position = Vector2(509, 614)
+position = Vector2(516, 615)
 
 [node name="Player" parent="." instance=ExtResource("2_aqk2v")]
 position = Vector2(194, 427)
 
 [node name="fogo" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(-18, 443)
+position = Vector2(-27, 170)
 
 [node name="fogo2" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(893, 442)
+position = Vector2(1022, 436)
 
 [node name="fogo3" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(756, 183)
+position = Vector2(739, -5)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_aqk2v")
 autoplay = true
 
 [node name="Estintor" parent="." instance=ExtResource("6_dwbse")]
-position = Vector2(482, 522)
+position = Vector2(466, 517)
+
+[node name="chaoMenor" parent="." instance=ExtResource("7_pkg7o")]
+position = Vector2(381, 353)
+
+[node name="caixa" parent="." instance=ExtResource("8_gbfbk")]
+position = Vector2(486, 250)
