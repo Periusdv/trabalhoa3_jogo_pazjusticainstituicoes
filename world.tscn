@@ -14,7 +14,7 @@
 [node name="BackGrond" parent="." instance=ExtResource("1_dwbse")]
 
 [node name="Ground" parent="." instance=ExtResource("3_036b0")]
-position = Vector2(516, 615)
+position = Vector2(509, 615)
 
 [node name="Player" parent="." instance=ExtResource("2_aqk2v")]
 position = Vector2(194, 427)

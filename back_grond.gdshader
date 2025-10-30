@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
-uniform float scroll_speed : hint_range(0.0, 2.0) = 0.5;
-uniform vec2 player_position;
+uniform float offset_x = 0.0;
 
 void fragment() {
-    vec2 uv = UV + player_position * scroll_speed;
+    vec2 uv = UV;
+    uv.x += offset_x;
     COLOR = texture(TEXTURE, uv);
 }

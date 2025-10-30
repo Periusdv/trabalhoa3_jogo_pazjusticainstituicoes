@@ -4,18 +4,15 @@
 [ext_resource type="Script" uid="uid://dji8es3g605fj" path="res://back_grond.gd" id="1_dwyq1"]
 [ext_resource type="Texture2D" uid="uid://cw6sfec4db4n0" path="res://assets/Cidade1.png" id="2_dwyq1"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_el2g2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwyq1"]
 shader = ExtResource("1_28dbd")
-shader_parameter/scroll_speed = 0.5
-shader_parameter/player_position = Vector2(0, 0)
+shader_parameter/offset_x = 0.0
 
 [node name="BackGrond" type="Node2D"]
 script = ExtResource("1_dwyq1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
-material = SubResource("ShaderMaterial_el2g2")
-offset_top = -647.0
-offset_right = 2304.0
-offset_bottom = 649.0
+material = SubResource("ShaderMaterial_dwyq1")
 texture = ExtResource("2_dwyq1")
+stretch_mode = 1
