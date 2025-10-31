@@ -1,25 +1,23 @@
 extends CharacterBody2D
 
-# Movimento
+# --- MOVIMENTO ---
 var speed := 300.0
 var jump_speed := -500.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var start_position: Vector2
 var last_safe_position: Vector2
 
-# Knockback
-var knockback_velocity := Vector2.ZERO
-var is_knocked_back := false
-
-# Estado
+# --- ESTADO ---
 var has_extintor := false
 var super_power := false
 var facing_dir := 1 # 1 = direita, -1 = esquerda
 
-# Cena da fumaça
+# --- FUMAÇA ---
 var smoke_scene := preload("res://fumaça.tscn")
+var smoke_cooldown := 0.5
+var smoke_timer := 0.0
 
-# Limite de queda do mapa
+# --- LIMITE DE QUEDA ---
 const FALL_LIMIT_Y := 1000.0
 
 func _ready():
@@ -30,40 +28,17 @@ func _ready():
 func _physics_process(delta):
 	velocity.y += gravity * delta
 
-	# Movimento knockback
-	if is_knocked_back:
-		velocity.x = knockback_velocity.x
-		velocity.y += knockback_velocity.y * delta
-		# Decaimento
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 8)
-		if knockback_velocity.length() < 10:
-			is_knocked_back = false
-	else:
-		var direction_input = Input.get_axis("ui_left", "ui_right")
-		velocity.x = direction_input * speed
+	# Movimento horizontal
+	var direction_input = Input.get_axis("ui_left", "ui_right")
+	velocity.x = direction_input * speed
 
-		if direction_input != 0:
-			facing_dir = direction_input
+	if direction_input != 0:
+		facing_dir = direction_input
 
-		# Animações
-		if has_extintor:
-			if direction_input != 0:
-				$AnimatedSprite2D.play("super")
-			else:
-				$AnimatedSprite2D.stop()
-				$AnimatedSprite2D.frame = 0
-		else:
-			if direction_input != 0:
-				$AnimatedSprite2D.play("default")
-			else:
-				$AnimatedSprite2D.stop()
-				$AnimatedSprite2D.frame = 0
-
-		$AnimatedSprite2D.flip_h = facing_dir < 0
-
-		if Input.is_action_just_pressed("ui_up") and is_on_floor():
-			$SoundJump.play()
-			velocity.y = jump_speed
+	# Pulo
+	if Input.is_action_just_pressed("ui_up") and is_on_floor():
+		$SoundJump.play()
+		velocity.y = jump_speed
 
 	move_and_slide()
 
@@ -71,18 +46,39 @@ func _physics_process(delta):
 	if is_on_floor():
 		last_safe_position = global_position
 
-	# Dispara fumaça
-	if has_extintor and Input.is_action_just_pressed("ui_select"):
-		shoot_fumaça()
+	# Animações
+	if has_extintor:
+		if direction_input != 0:
+			$AnimatedSprite2D.play("super")
+		else:
+			$AnimatedSprite2D.stop()
+			$AnimatedSprite2D.frame = 0
+	else:
+		if direction_input != 0:
+			$AnimatedSprite2D.play("default")
+		else:
+			$AnimatedSprite2D.stop()
+			$AnimatedSprite2D.frame = 0
 
-	var collision = move_and_collide(velocity * get_physics_process_delta_time())
+	$AnimatedSprite2D.flip_h = facing_dir < 0
+
+	# Atualiza timer da fumaça
+	if smoke_timer > 0:
+		smoke_timer -= delta
+
+	# Disparo de fumaça
+	if has_extintor and Input.is_action_just_pressed("ui_select") and smoke_timer <= 0:
+		shoot_fumaça()
+		smoke_timer = smoke_cooldown
+
+	# Colisões
+	var collision = move_and_collide(velocity * delta)
 	if collision:
 		_on_collision(collision)
 
-	# Caiu do mapa
+	# Limite de queda
 	if global_position.y > FALL_LIMIT_Y:
 		_reset_to_last_safe_position()
-
 
 # ---- COLISÕES ----
 func _on_collision(collision):
@@ -94,39 +90,26 @@ func _on_collision(collision):
 		obj.queue_free()
 		do_super()
 	elif obj.is_in_group("fogo"):
-		print("🔥 Encostou no fogo!")
-		# TODO: todo knockback do fogo é calculado pelo fogo
-		if not super_power and obj.has_method("apply_knockback_to_player"):
-			obj.apply_knockback_to_player(self)
-		else:
-			print("🛡️ Imune ao fogo (super ativo)")
-
-
-# ---- RECEBE KNOCKBACK ----
-func apply_knockback(force: Vector2):
-	if super_power:
-		print("💪 Super ativo — sem knockback")
-		return
-
-	print("💥 Jogador levou knockback: ", force)
-	knockback_velocity = force
-	is_knocked_back = true
-
+		print("Encostou no fogo!")
+		# Sem knockback, apenas impressão / efeito visual
+		if not super_power:
+			pass # pode adicionar efeito visual aqui se quiser
 
 # ---- DISPARO DE FUMAÇA ----
 func shoot_fumaça():
 	if not smoke_scene:
-		print("⚠️ Cena da fumaça não atribuída!")
 		return
-
 	var fumaça = smoke_scene.instantiate()
 	get_parent().add_child(fumaça)
 
-	var pos = Vector2(global_position.x + (32 * facing_dir), global_position.y + 30)
-	fumaça.global_position = pos
+	# cria levemente afastada do corpo do player
+	var offset = Vector2(40 * facing_dir, 10)
+	fumaça.global_position = global_position + offset
 	fumaça.direction = facing_dir
-	print("💨 Fumaça lançada em ", pos)
 
+	# impede colisão imediata com o player
+	fumaça.call_deferred("set_collision_layer_value", 1, false)
+	fumaça.call_deferred("set_collision_mask_value", 1, false)
 
 # ---- EXTINTOR / SUPER ----
 func do_super() -> void:
@@ -134,13 +117,12 @@ func do_super() -> void:
 		super_power = true
 		has_extintor = true
 		speed += 50
-		print("🧯 Extintor adquirido (modo super)!")
+		print("Extintor adquirido (modo super)!")
 		$AnimatedSprite2D.play("super")
 		$AnimatedSprite2D.frame = 0
 
-
 # ---- RESET POSIÇÃO APÓS QUEDA ----
 func _reset_to_last_safe_position():
-	print("⚠️ Caiu do mapa! Voltando à última posição segura...")
+	print("Caiu do mapa! Voltando à última posição segura...")
 	global_position = last_safe_position
 	velocity = Vector2.ZERO

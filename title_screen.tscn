@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd75wni52utx6"]
+[gd_scene load_steps=16 format=3 uid="uid://g2vnfddo537y"]
 
-[ext_resource type="Script" uid="uid://bkoa00wg2niq7" path="res://title_screen.gd" id="1_tpml5"]
+[ext_resource type="Script" path="res://title_screen.gd" id="1_tpml5"]
 [ext_resource type="Texture2D" uid="uid://cw6sfec4db4n0" path="res://assets/Cidade1.png" id="1_v6p8y"]
 [ext_resource type="Texture2D" uid="uid://dp40d4ivk5xt0" path="res://assets/NovoBombeiroExtintor1.png" id="2_ak2if"]
 [ext_resource type="Texture2D" uid="uid://71pagivusxo0" path="res://icon.svg" id="2_ig5kc"]
 [ext_resource type="FontFile" uid="uid://5vca116iayvo" path="res://assets/Minecraft.ttf" id="3_05l2w"]
-[ext_resource type="Theme" uid="uid://cl4arjmp21lyx" path="res://default_btn.tres" id="4_hafda"]
+[ext_resource type="Theme" uid="uid://3xaa6fc387sk" path="res://default_btn.tres" id="4_hafda"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05l2w"]
 bg_color = Color(0.937275, 0.278218, 0.794282, 1)
@@ -49,6 +49,45 @@ Button/styles/pressed = SubResource("StyleBoxFlat_tpml5")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hafda"]
 
+[sub_resource type="Animation" id="Animation_jqemp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/HBoxContainer/bombeiro:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_tpml5"]
 resource_name = "review"
 length = 1.3
@@ -87,45 +126,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 8.28211),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_jqemp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bg:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/HBoxContainer/bombeiro:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_013yr"]
