@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkfan"]
 size = Vector2(46, 56.25)
 
-[node name="Estintor" type="RigidBody2D"]
+[node name="Estintor" type="Area2D"]
 script = ExtResource("1_tkfan")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

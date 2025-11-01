@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbl7hfb1ctu0y"]
+
+[ext_resource type="Script" uid="uid://dyvjptg8er2di" path="res://predio_especial_2d.gd" id="1_sivkx"]
+[ext_resource type="Texture2D" uid="uid://bkqfn3w0a32ii" path="res://assets/Prédio.png" id="1_xm280"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypqmy"]
+size = Vector2(165, 220)
+
+[node name="Predio expecias" type="Area2D"]
+script = ExtResource("1_sivkx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(70, 124)
+texture = ExtResource("1_xm280")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(80.5, 110)
+shape = SubResource("RectangleShape2D_ypqmy")

@@ -20,6 +20,11 @@ var smoke_timer := 0.0
 # --- LIMITE DE QUEDA ---
 const FALL_LIMIT_Y := 1000.0
 
+# --- KNOCKBACK ---
+var is_knocked_back := false
+var knockback_timer := 0.0
+const KNOCKBACK_DURATION := 0.3
+
 func _ready():
 	add_to_group("player")
 	start_position = global_position
@@ -28,7 +33,14 @@ func _ready():
 func _physics_process(delta):
 	velocity.y += gravity * delta
 
-	# Movimento horizontal
+	if is_knocked_back:
+		move_and_slide()
+		knockback_timer -= delta
+		if knockback_timer <= 0:
+			is_knocked_back = false
+		return
+
+	# Movimento normal
 	var direction_input = Input.get_axis("ui_left", "ui_right")
 	velocity.x = direction_input * speed
 
@@ -62,11 +74,10 @@ func _physics_process(delta):
 
 	$AnimatedSprite2D.flip_h = facing_dir < 0
 
-	# Atualiza timer da fumaça
+	# Timer fumaça
 	if smoke_timer > 0:
 		smoke_timer -= delta
 
-	# Disparo de fumaça
 	if has_extintor and Input.is_action_just_pressed("ui_select") and smoke_timer <= 0:
 		shoot_fumaça()
 		smoke_timer = smoke_cooldown
@@ -80,6 +91,7 @@ func _physics_process(delta):
 	if global_position.y > FALL_LIMIT_Y:
 		_reset_to_last_safe_position()
 
+
 # ---- COLISÕES ----
 func _on_collision(collision):
 	var obj = collision.get_collider()
@@ -90,10 +102,19 @@ func _on_collision(collision):
 		obj.queue_free()
 		do_super()
 	elif obj.is_in_group("fogo"):
-		print("Encostou no fogo!")
-		# Sem knockback, apenas impressão / efeito visual
 		if not super_power:
-			pass # pode adicionar efeito visual aqui se quiser
+			obj.apply_knockback_to_player(self)  # fogo calcula e aplica
+	elif obj.is_in_group("predio_especial"):
+		print("Fim de jogo!")
+		get_tree().change_scene("res://FimDeJogo.tscn")  # substitua pelo caminho da sua tela de fim
+
+
+# ---- KNOCKBACK RECEBIDO ----
+func apply_knockback(force: Vector2):
+	is_knocked_back = true
+	knockback_timer = KNOCKBACK_DURATION
+	velocity = force
+
 
 # ---- DISPARO DE FUMAÇA ----
 func shoot_fumaça():
@@ -102,14 +123,13 @@ func shoot_fumaça():
 	var fumaça = smoke_scene.instantiate()
 	get_parent().add_child(fumaça)
 
-	# cria levemente afastada do corpo do player
 	var offset = Vector2(40 * facing_dir, 10)
 	fumaça.global_position = global_position + offset
 	fumaça.direction = facing_dir
 
-	# impede colisão imediata com o player
 	fumaça.call_deferred("set_collision_layer_value", 1, false)
 	fumaça.call_deferred("set_collision_mask_value", 1, false)
+
 
 # ---- EXTINTOR / SUPER ----
 func do_super() -> void:
@@ -120,6 +140,7 @@ func do_super() -> void:
 		print("Extintor adquirido (modo super)!")
 		$AnimatedSprite2D.play("super")
 		$AnimatedSprite2D.frame = 0
+
 
 # ---- RESET POSIÇÃO APÓS QUEDA ----
 func _reset_to_last_safe_position():

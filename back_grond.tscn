@@ -14,5 +14,9 @@ script = ExtResource("1_dwyq1")
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_dwyq1")
+offset_left = -1357.0
+offset_top = -635.0
+offset_right = 11762.0
+offset_bottom = 661.0
 texture = ExtResource("2_dwyq1")
 stretch_mode = 1

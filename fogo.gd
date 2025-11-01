@@ -16,11 +16,10 @@ func apply_knockback_to_player(player):
 	var force = Vector2(dir * knockback_force, knockback_vertical)
 	player.apply_knockback(force)
 
-# Método para apagar o fogo (chamado pela fumaça)
+# Método para apagar o fogo
 func apagar():
-	$AnimatedSprite2D.stop()  # Para a animação
-	queue_free()                # Remove o fogo da cena
+	$AnimatedSprite2D.stop()
+	queue_free()
 
-# Alias opcional se quiser manter o método antigo
 func extinguish():
 	apagar()
