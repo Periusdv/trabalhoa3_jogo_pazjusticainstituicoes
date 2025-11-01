@@ -13,8 +13,8 @@ expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqemp"]
-bg_color = Color(0.80198, 0, 0.180675, 1)
-border_color = Color(0.758371, 0.0846825, 9.62615e-08, 1)
+bg_color = Color(0, 0.521383, 0.0759299, 1)
+border_color = Color(0.104785, 0.49316, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hafda"]
 bg_color = Color(0.93949, 0.337262, 0.684113, 1)
@@ -27,12 +27,12 @@ expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpml5"]
-bg_color = Color(0.778156, 0, 0.108928, 1)
+bg_color = Color(0.00457401, 0.503827, 9.62615e-08, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.591321, 0, 0.0490599, 1)
+border_color = Color(0.0894868, 0.372851, 0, 1)
 
 [resource]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
