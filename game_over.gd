@@ -1,19 +1,15 @@
-extends Control
+extends CanvasLayer
 
+signal restart_game
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var btn_restart := $Button  # Caminho direto para o Button
 
+func _ready():
+	if btn_restart:
+		btn_restart.pressed.connect(Callable(self, "_on_restart_pressed"))
+	else:
+		print("⚠️ Botão Reiniciar não encontrado!")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_restart_btn_pressed():
-	get_tree().change_scene_to_file("res://title_screen.tscn")
-
-
-func _on_quit_btn_pressed():
-	get_tree().quit()
+func _on_restart_pressed():
+	emit_signal("restart_game")
+	queue_free()  # Remove a tela de GameOver

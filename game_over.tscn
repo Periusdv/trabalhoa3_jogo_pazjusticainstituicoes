@@ -1,168 +1,36 @@
-[gd_scene load_steps=13 format=3 uid="uid://djtyx7us34uy2"]
+[gd_scene load_steps=4 format=3 uid="uid://cf4pg0p2a7hr2"]
 
-[ext_resource type="Script" uid="uid://csqd7ohbwjf71" path="res://game_over.gd" id="1_8u835"]
-[ext_resource type="Texture2D" uid="uid://cua1hjo8adj4h" path="res://assets/GameOver.png" id="1_ccer4"]
-[ext_resource type="Theme" uid="uid://3xaa6fc387sk" path="res://default_btn.tres" id="2_8u835"]
-[ext_resource type="FontFile" uid="uid://5vca116iayvo" path="res://assets/Minecraft.ttf" id="3_ftari"]
+[ext_resource type="Script" uid="uid://brjrtyld6dq6g" path="res://game_over.gd" id="1_ccer4"]
+[ext_resource type="Texture2D" uid="uid://cw6sfec4db4n0" path="res://assets/Cidade1.png" id="1_yxx3c"]
+[ext_resource type="Texture2D" uid="uid://cua1hjo8adj4h" path="res://assets/GameOver.png" id="2_ccer4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28vn7"]
-bg_color = Color(1, 0.176084, 0.76457, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.925315, 0, 0.375907, 1)
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_ccer4")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2vha"]
-bg_color = Color(0.879209, 0, 0.12473, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.728588, 0, 0.174767, 1)
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -553.0
+offset_top = -339.0
+offset_right = 1751.0
+offset_bottom = 957.0
+texture = ExtResource("1_yxx3c")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkf4o"]
-bg_color = Color(1, 0.248031, 0.651402, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.801518, 1.05888e-06, 0.424797, 1)
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 393.0
+offset_top = 157.0
+offset_right = 793.0
+offset_bottom = 557.0
+texture = ExtResource("2_ccer4")
+metadata/_edit_use_anchors_ = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3u7xm"]
-bg_color = Color(0.864853, 0, 0.214958, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.732841, 0, 0.0984692, 1)
+[node name="Button" type="Button" parent="."]
+offset_left = 464.0
+offset_top = 415.0
+offset_right = 712.0
+offset_bottom = 468.0
 
-[sub_resource type="Theme" id="Theme_woa3c"]
-default_font = ExtResource("3_ftari")
-Button/styles/focus = SubResource("StyleBoxFlat_28vn7")
-Button/styles/hover = SubResource("StyleBoxFlat_k2vha")
-Button/styles/normal = SubResource("StyleBoxFlat_fkf4o")
-Button/styles/pressed = SubResource("StyleBoxFlat_3u7xm")
-
-[sub_resource type="Animation" id="Animation_ccer4"]
-resource_name = "fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.502812),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.502812, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_8u835"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8u835"]
-_data = {
-&"RESET": SubResource("Animation_8u835"),
-&"fade_in": SubResource("Animation_ccer4")
-}
-
-[node name="GameOver" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_8u835")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -230.0
-offset_right = 200.0
-offset_bottom = 230.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameOver_Title" type="TextureRect" parent="VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_ccer4")
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Restart_btn" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_8u835")
-text = "Restart
-"
-
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Quit_btn" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme = SubResource("Theme_woa3c")
-text = "Quit
-"
-
-[node name="anim" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_8u835")
-}
-autoplay = "fade_in"
-
-[connection signal="pressed" from="VBoxContainer/Restart_btn" to="." method="_on_restart_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit_btn" to="." method="_on_quit_btn_pressed"]
+[node name="Label" type="Label" parent="."]
+offset_left = 552.0
+offset_top = 432.0
+offset_right = 630.0
+offset_bottom = 455.0
+text = "Reiniciar"

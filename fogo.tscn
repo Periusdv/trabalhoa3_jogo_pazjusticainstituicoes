@@ -30,17 +30,17 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_prn2k"]
-radius = 47.0
-height = 128.0
+radius = 43.0
+height = 86.0
 
 [node name="fogo" type="StaticBody2D"]
 script = ExtResource("1_s37p7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(62.5, 58)
-scale = Vector2(0.545, 0.52)
+position = Vector2(49, 46.5)
+scale = Vector2(0.41, 0.405)
 sprite_frames = SubResource("SpriteFrames_xvst4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(63, 64)
+position = Vector2(47, 46)
 shape = SubResource("CapsuleShape2D_prn2k")

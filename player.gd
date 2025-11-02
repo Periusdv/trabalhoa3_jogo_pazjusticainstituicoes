@@ -1,38 +1,68 @@
 extends CharacterBody2D
 
-# --- MOVIMENTO ---
-var speed := 300.0
+# -------------------------------
+# MOVIMENTO
+# -------------------------------
+var speed := 255.0
 var jump_speed := -500.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var start_position: Vector2
 var last_safe_position: Vector2
 
-# --- ESTADO ---
+# -------------------------------
+# ESTADO
+# -------------------------------
 var has_extintor := false
 var super_power := false
 var facing_dir := 1 # 1 = direita, -1 = esquerda
 
-# --- FUMAÇA ---
+# -------------------------------
+# FUMAÇA
+# -------------------------------
 var smoke_scene := preload("res://fumaça.tscn")
 var smoke_cooldown := 0.5
 var smoke_timer := 0.0
 
-# --- LIMITE DE QUEDA ---
+# -------------------------------
+# LIMITE DE QUEDA
+# -------------------------------
 const FALL_LIMIT_Y := 1000.0
 
-# --- KNOCKBACK ---
+# -------------------------------
+# KNOCKBACK
+# -------------------------------
 var is_knocked_back := false
 var knockback_timer := 0.0
 const KNOCKBACK_DURATION := 0.3
 
+# -------------------------------
+# VIDAS
+# -------------------------------
+var vidas := 3
+@onready var hud := get_tree().current_scene.get_node("HUD")
+
+# -------------------------------
+# INVENCIBILIDADE
+# -------------------------------
+var invencivel := false
+var invencivel_tempo := 1.0 # duração em segundos
+
+# -------------------------------
+# READY
+# -------------------------------
 func _ready():
 	add_to_group("player")
 	start_position = global_position
 	last_safe_position = start_position
+	hud.atualizar_vidas(vidas)
 
+# -------------------------------
+# FÍSICA
+# -------------------------------
 func _physics_process(delta):
 	velocity.y += gravity * delta
 
+	# Knockback ativo
 	if is_knocked_back:
 		move_and_slide()
 		knockback_timer -= delta
@@ -40,10 +70,9 @@ func _physics_process(delta):
 			is_knocked_back = false
 		return
 
-	# Movimento normal
+	# Movimento lateral
 	var direction_input = Input.get_axis("ui_left", "ui_right")
 	velocity.x = direction_input * speed
-
 	if direction_input != 0:
 		facing_dir = direction_input
 
@@ -71,13 +100,11 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite2D.stop()
 			$AnimatedSprite2D.frame = 0
-
 	$AnimatedSprite2D.flip_h = facing_dir < 0
 
 	# Timer fumaça
 	if smoke_timer > 0:
 		smoke_timer -= delta
-
 	if has_extintor and Input.is_action_just_pressed("ui_select") and smoke_timer <= 0:
 		shoot_fumaça()
 		smoke_timer = smoke_cooldown
@@ -89,10 +116,11 @@ func _physics_process(delta):
 
 	# Limite de queda
 	if global_position.y > FALL_LIMIT_Y:
-		_reset_to_last_safe_position()
+		morrer() # Caiu do mapa, Game Over
 
-
-# ---- COLISÕES ----
+# -------------------------------
+# COLISÕES
+# -------------------------------
 func _on_collision(collision):
 	var obj = collision.get_collider()
 	if not obj:
@@ -103,35 +131,98 @@ func _on_collision(collision):
 		do_super()
 	elif obj.is_in_group("fogo"):
 		if not super_power:
-			obj.apply_knockback_to_player(self)  # fogo calcula e aplica
+			obj.apply_knockback_to_player(self)
+			tomar_dano(1)
 	elif obj.is_in_group("predio_especial"):
 		print("Fim de jogo!")
-		get_tree().change_scene("res://FimDeJogo.tscn")  # substitua pelo caminho da sua tela de fim
+		morrer() # Game Over
 
-
-# ---- KNOCKBACK RECEBIDO ----
+# -------------------------------
+# KNOCKBACK RECEBIDO
+# -------------------------------
 func apply_knockback(force: Vector2):
 	is_knocked_back = true
 	knockback_timer = KNOCKBACK_DURATION
 	velocity = force
 
+# -------------------------------
+# DANO E MORTE
+# -------------------------------
+func tomar_dano(valor: int = 1):
+	if invencivel:
+		return # ignora se estiver invencível
 
-# ---- DISPARO DE FUMAÇA ----
+	vidas -= valor
+	hud.atualizar_vidas(vidas)
+	print("Jogador tomou dano! Vidas restantes:", vidas)
+
+	if vidas <= 0:
+		morrer()
+	else:
+		tornar_invencivel(invencivel_tempo)
+
+func tornar_invencivel(segundos: float):
+	invencivel = true
+	$AnimatedSprite2D.modulate = Color(1,1,1,0.5) # efeito visual opcional
+	await get_tree().create_timer(segundos).timeout
+	invencivel = false
+	$AnimatedSprite2D.modulate = Color(1,1,1,1)
+
+# -------------------------------
+# FUNÇÃO DE MORTE
+# -------------------------------
+func morrer():
+	print("Jogador morreu!")
+	velocity = Vector2.ZERO
+	set_physics_process(false)
+	$AnimatedSprite2D.visible = false
+
+	# Instancia a tela de Game Over dentro da cena atual
+	var go_scene = preload("res://game_over.tscn").instantiate()
+	get_tree().current_scene.add_child(go_scene)
+
+	# Conecta o botão de reiniciar
+	var btn_restart = go_scene.get_node("Button")
+	if btn_restart:
+		btn_restart.pressed.connect(Callable(self, "_on_restart_game"))
+
+# -------------------------------
+# FUNÇÃO DE REINÍCIO
+# -------------------------------
+func _on_restart_game():
+	print("Jogo reiniciado!")
+	global_position = start_position
+	vidas = 3
+	hud.atualizar_vidas(vidas)
+	velocity = Vector2.ZERO
+	set_physics_process(true)
+	$AnimatedSprite2D.visible = true
+	super_power = false
+	has_extintor = false
+	speed = 255
+
+	# Remove a tela de Game Over
+	var go_scene = get_tree().current_scene.get_node("GameOver")
+	if go_scene:
+		go_scene.queue_free()
+
+# -------------------------------
+# DISPARO DE FUMAÇA
+# -------------------------------
 func shoot_fumaça():
 	if not smoke_scene:
 		return
 	var fumaça = smoke_scene.instantiate()
 	get_parent().add_child(fumaça)
-
 	var offset = Vector2(40 * facing_dir, 10)
 	fumaça.global_position = global_position + offset
 	fumaça.direction = facing_dir
-
 	fumaça.call_deferred("set_collision_layer_value", 1, false)
 	fumaça.call_deferred("set_collision_mask_value", 1, false)
 
-
-# ---- EXTINTOR / SUPER ----
+# -------------------------------
+# EXTINTOR / SUPER
+# -------------------------------
 func do_super() -> void:
 	if not super_power:
 		super_power = true
@@ -141,8 +232,9 @@ func do_super() -> void:
 		$AnimatedSprite2D.play("super")
 		$AnimatedSprite2D.frame = 0
 
-
-# ---- RESET POSIÇÃO APÓS QUEDA ----
+# -------------------------------
+# RESET POSIÇÃO APÓS QUEDA
+# -------------------------------
 func _reset_to_last_safe_position():
 	print("Caiu do mapa! Voltando à última posição segura...")
 	global_position = last_safe_position

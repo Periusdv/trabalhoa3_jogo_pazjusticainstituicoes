@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://btob2ibsxxka1"]
+[gd_scene load_steps=11 format=3 uid="uid://btob2ibsxxka1"]
 
 [ext_resource type="PackedScene" uid="uid://dx4oo34vh47qc" path="res://back_grond.tscn" id="1_dwbse"]
 [ext_resource type="PackedScene" uid="uid://bo3agc564g32n" path="res://player.tscn" id="2_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bfv1ckpkmbpy7" path="res://ground.tscn" id="3_036b0"]
 [ext_resource type="PackedScene" uid="uid://bbl7hfb1ctu0y" path="res://predio_especial_2d.tscn" id="3_ioo17"]
 [ext_resource type="AudioStream" uid="uid://bfs8eqbuc5xdy" path="res://assets/music.ogg" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://bkuj2d5gwswjs" path="res://hud.tscn" id="4_wse8f"]
 [ext_resource type="PackedScene" uid="uid://g5nf84c05l3e" path="res://fogo.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://b44hax4ym128" path="res://estintor.tscn" id="6_dwbse"]
 [ext_resource type="PackedScene" uid="uid://dx0emexnv0tmu" path="res://chao_menor.tscn" id="7_pkg7o"]
@@ -27,8 +28,10 @@ position = Vector2(6182, 618)
 [node name="Ground4" parent="." instance=ExtResource("3_036b0")]
 position = Vector2(10739, 604)
 
-[node name="Predio expecias" parent="Ground4" instance=ExtResource("3_ioo17")]
-position = Vector2(39, -266)
+[node name="Predio expecias" parent="." instance=ExtResource("3_ioo17")]
+position = Vector2(10741, 251)
+
+[node name="HUD" parent="." instance=ExtResource("4_wse8f")]
 
 [node name="Player" parent="." instance=ExtResource("2_aqk2v")]
 position = Vector2(194, 427)
@@ -37,88 +40,88 @@ position = Vector2(194, 427)
 position = Vector2(3101, 517)
 
 [node name="fogo" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(1244, 479)
+position = Vector2(1196, 512)
 
 [node name="fogo8" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(2583, -228)
+position = Vector2(2602, -193)
 
 [node name="fogo2" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(-345, 454)
+position = Vector2(-380, 481)
 
 [node name="fogo9" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(1816, -216)
+position = Vector2(1833, -188)
 
 [node name="fogo3" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(952, 127)
+position = Vector2(955, 162)
 
 [node name="fogo5" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(1976, 101)
+position = Vector2(2068, 148)
 
 [node name="fogo6" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(2119, 480)
+position = Vector2(2121, 527)
 
 [node name="fogo10" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(2850, 449)
+position = Vector2(2836, 484)
 
 [node name="fogo11" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(3314, 455)
+position = Vector2(3347, 495)
 
 [node name="fogo12" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(3858, 251)
+position = Vector2(3875, 282)
 
 [node name="fogo13" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(4460, 42)
+position = Vector2(4422, 73)
 
 [node name="fogo14" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(4347, 405)
+position = Vector2(4389, 443)
 
 [node name="fogo15" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(4920, 259)
+position = Vector2(4866, 302)
 
 [node name="fogo16" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(5427, 174)
+position = Vector2(5410, 209)
 
 [node name="fogo17" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(5903, 448)
+position = Vector2(5894, 481)
 
 [node name="fogo18" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(6174, 453)
+position = Vector2(6174, 484)
 
 [node name="fogo19" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(6478, 446)
+position = Vector2(6490, 481)
 
 [node name="fogo20" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(6992, 298)
+position = Vector2(7008, 332)
 
 [node name="fogo21" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(7421, 147)
+position = Vector2(7445, 174)
 
 [node name="fogo22" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(7963, -4)
+position = Vector2(7977, 35)
 
 [node name="fogo23" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(7938, 307)
+position = Vector2(7924, 342)
 
 [node name="fogo24" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(9047, 299)
+position = Vector2(9057, 328)
 
 [node name="fogo25" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(8557, 181)
+position = Vector2(8541, 218)
 
 [node name="fogo26" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(9525, 192)
+position = Vector2(9535, 215)
 
 [node name="fogo27" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(10098, 310)
+position = Vector2(10030, 328)
 
 [node name="fogo28" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(10486, 439)
+position = Vector2(10454, 470)
 
 [node name="fogo7" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(1320, 13)
+position = Vector2(1349, 54)
 
 [node name="fogo4" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(1574, 327)
+position = Vector2(1615, 366)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_aqk2v")
