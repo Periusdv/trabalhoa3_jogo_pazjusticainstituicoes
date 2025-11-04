@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://g2vnfddo537y"]
 
-[ext_resource type="Script" path="res://title_screen.gd" id="1_tpml5"]
+[ext_resource type="Script" uid="uid://bkoa00wg2niq7" path="res://title_screen.gd" id="1_tpml5"]
 [ext_resource type="Texture2D" uid="uid://cw6sfec4db4n0" path="res://assets/Cidade1.png" id="1_v6p8y"]
 [ext_resource type="Texture2D" uid="uid://dp40d4ivk5xt0" path="res://assets/NovoBombeiroExtintor1.png" id="2_ak2if"]
 [ext_resource type="Texture2D" uid="uid://71pagivusxo0" path="res://icon.svg" id="2_ig5kc"]
@@ -51,30 +51,6 @@ Button/styles/pressed = SubResource("StyleBoxFlat_tpml5")
 
 [sub_resource type="Animation" id="Animation_jqemp"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.166667),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/HBoxContainer/bombeiro:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_tpml5"]
 resource_name = "review"

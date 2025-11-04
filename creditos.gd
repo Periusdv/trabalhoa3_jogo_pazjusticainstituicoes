@@ -11,12 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_start_btn_pressed() -> void:
-	get_tree().change_scene_to_file("res://world.tscn")
-
-func _on_credits_btn_pressed() -> void:
-	get_tree().change_scene_to_file("res://creditos.tscn")
-
-
-func _on_exit_btn_pressed() -> void:
-	get_tree().quit()
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://title_screen.tscn")
