@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://btob2ibsxxka1"]
+[gd_scene load_steps=12 format=3 uid="uid://btob2ibsxxka1"]
 
 [ext_resource type="PackedScene" uid="uid://dx4oo34vh47qc" path="res://back_grond.tscn" id="1_dwbse"]
+[ext_resource type="Script" uid="uid://d1u76dbitxv6c" path="res://world.gd" id="1_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://bo3agc564g32n" path="res://player.tscn" id="2_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bfv1ckpkmbpy7" path="res://ground.tscn" id="3_036b0"]
 [ext_resource type="PackedScene" uid="uid://bbl7hfb1ctu0y" path="res://predio_especial_2d.tscn" id="3_ioo17"]
@@ -12,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://pb0w02ytaa37" path="res://caixa.tscn" id="8_gbfbk"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_ic0uy")
 
 [node name="BackGrond" parent="." instance=ExtResource("1_dwbse")]
 position = Vector2(-383, 0)
@@ -192,3 +194,5 @@ position = Vector2(1441, 458)
 
 [node name="caixa" parent="." instance=ExtResource("8_gbfbk")]
 position = Vector2(961, 247)
+
+[connection signal="body_entered" from="Predio expecias" to="Predio expecias" method="_on_body_entered"]

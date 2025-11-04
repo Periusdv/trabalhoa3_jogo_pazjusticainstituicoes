@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://w02ubnljudy8"]
+
+[ext_resource type="Script" uid="uid://c0iu4uijwchf0" path="res://tela_fim_de_jogo.gd" id="1_sn6bk"]
+[ext_resource type="Texture2D" uid="uid://cw6sfec4db4n0" path="res://assets/Cidade1.png" id="2_nc42w"]
+[ext_resource type="Texture2D" uid="uid://bcv5wonvgf7tv" path="res://assets/ChaoNovo.png" id="3_gdvhv"]
+[ext_resource type="Texture2D" uid="uid://dp40d4ivk5xt0" path="res://assets/NovoBombeiroExtintor1.png" id="4_k7hke"]
+[ext_resource type="Texture2D" uid="uid://bkqfn3w0a32ii" path="res://assets/Prédio.png" id="5_mx4op"]
+[ext_resource type="FontFile" uid="uid://5vca116iayvo" path="res://assets/Minecraft.ttf" id="6_wvum6"]
+[ext_resource type="Theme" uid="uid://3xaa6fc387sk" path="res://default_btn.tres" id="7_l0lf6"]
+
+[node name="tela_fim_de_jogo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sn6bk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 2.0
+offset_right = 1154.0
+offset_bottom = 648.0
+texture = ExtResource("2_nc42w")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -400.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_gdvhv")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -400.0
+offset_right = 400.0
+grow_vertical = 0
+texture = ExtResource("3_gdvhv")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 360.0
+offset_right = 299.0
+offset_bottom = 586.0
+texture = ExtResource("4_k7hke")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 112.0
+offset_right = 640.0
+offset_bottom = 667.0
+texture = ExtResource("5_mx4op")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 554.0
+offset_top = 8.0
+offset_right = 1140.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.185981, 0.185981, 0.185981, 1)
+theme_override_colors/font_shadow_color = Color(0.915189, 0.915189, 0.915189, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_wvum6")
+theme_override_font_sizes/font_size = 30
+text = "Parabens!!!
+Voce impediu que o predio pegasse fogo."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 113.0
+offset_right = 977.0
+offset_bottom = 163.0
+theme = ExtResource("7_l0lf6")
+text = "Retornar para tela Inicial"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
