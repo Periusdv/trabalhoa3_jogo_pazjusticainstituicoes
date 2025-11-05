@@ -62,7 +62,6 @@ func _ready():
 func _physics_process(delta):
 	velocity.y += gravity * delta
 
-	# Knockback ativo
 	if is_knocked_back:
 		move_and_slide()
 		knockback_timer -= delta
@@ -70,24 +69,20 @@ func _physics_process(delta):
 			is_knocked_back = false
 		return
 
-	# Movimento lateral
 	var direction_input = Input.get_axis("ui_left", "ui_right")
 	velocity.x = direction_input * speed
 	if direction_input != 0:
 		facing_dir = direction_input
 
-	# Pulo
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		$SoundJump.play()
 		velocity.y = jump_speed
 
 	move_and_slide()
 
-	# Salva posição segura
 	if is_on_floor():
 		last_safe_position = global_position
 
-	# Animações
 	if has_extintor:
 		if direction_input != 0:
 			$AnimatedSprite2D.play("super")
@@ -102,21 +97,18 @@ func _physics_process(delta):
 			$AnimatedSprite2D.frame = 0
 	$AnimatedSprite2D.flip_h = facing_dir < 0
 
-	# Timer fumaça
 	if smoke_timer > 0:
 		smoke_timer -= delta
 	if has_extintor and Input.is_action_just_pressed("ui_select") and smoke_timer <= 0:
 		shoot_fumaça()
 		smoke_timer = smoke_cooldown
 
-	# Colisões
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		_on_collision(collision)
 
-	# Limite de queda
 	if global_position.y > FALL_LIMIT_Y:
-		morrer() # Caiu do mapa, Game Over
+		morrer()
 
 # -------------------------------
 # COLISÕES
@@ -129,13 +121,16 @@ func _on_collision(collision):
 	if obj.is_in_group("estintor"):
 		obj.queue_free()
 		do_super()
+
 	elif obj.is_in_group("fogo"):
 		if not super_power:
-			obj.apply_knockback_to_player(self)
+			if obj.has_method("apply_knockback_to_player"):
+				obj.apply_knockback_to_player(self)
 			tomar_dano(1)
+
 	elif obj.is_in_group("predio_especial"):
 		print("Fim de jogo!")
-		morrer() # Game Over
+		morrer()
 
 # -------------------------------
 # KNOCKBACK RECEBIDO
@@ -150,7 +145,7 @@ func apply_knockback(force: Vector2):
 # -------------------------------
 func tomar_dano(valor: int = 1):
 	if invencivel:
-		return # ignora se estiver invencível
+		return
 
 	vidas -= valor
 	hud.atualizar_vidas(vidas)
@@ -163,7 +158,7 @@ func tomar_dano(valor: int = 1):
 
 func tornar_invencivel(segundos: float):
 	invencivel = true
-	$AnimatedSprite2D.modulate = Color(1,1,1,0.5) # efeito visual opcional
+	$AnimatedSprite2D.modulate = Color(1,1,1,0.5)
 	await get_tree().create_timer(segundos).timeout
 	invencivel = false
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)
@@ -177,12 +172,11 @@ func morrer():
 	set_physics_process(false)
 	$AnimatedSprite2D.visible = false
 
-	# Instancia a tela de Game Over dentro da cena atual
 	var go_scene = preload("res://game_over.tscn").instantiate()
+	go_scene.name = "GameOver"
 	get_tree().current_scene.add_child(go_scene)
 
-	# Conecta o botão de reiniciar
-	var btn_restart = go_scene.get_node("Button")
+	var btn_restart = go_scene.get_node_or_null("Button")
 	if btn_restart:
 		btn_restart.pressed.connect(Callable(self, "_on_restart_game"))
 
@@ -190,21 +184,16 @@ func morrer():
 # FUNÇÃO DE REINÍCIO
 # -------------------------------
 func _on_restart_game():
-	print("Jogo reiniciado!")
-	global_position = start_position
-	vidas = 3
-	hud.atualizar_vidas(vidas)
-	velocity = Vector2.ZERO
-	set_physics_process(true)
-	$AnimatedSprite2D.visible = true
-	super_power = false
-	has_extintor = false
-	speed = 255
+	print("Reiniciando jogo...")
 
-	# Remove a tela de Game Over
-	var go_scene = get_tree().current_scene.get_node("GameOver")
-	if go_scene:
-		go_scene.queue_free()
+	# 1️⃣ Reseta GameManager (fogos/extintores restaurados)
+	if has_node("/root/GameManager"):
+		var gm = get_node("/root/GameManager")
+		if gm.has_method("resetar_estado"):
+			gm.resetar_estado()
+
+	# 2️⃣ Recarrega a cena do zero
+	get_tree().reload_current_scene()
 
 # -------------------------------
 # DISPARO DE FUMAÇA

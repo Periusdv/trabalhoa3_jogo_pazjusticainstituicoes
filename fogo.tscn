@@ -30,8 +30,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_prn2k"]
-radius = 43.0
-height = 86.0
+radius = 34.0
+height = 84.0
 
 [node name="fogo" type="StaticBody2D"]
 script = ExtResource("1_s37p7")

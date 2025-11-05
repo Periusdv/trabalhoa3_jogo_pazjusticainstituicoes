@@ -1,8 +1,10 @@
 extends Camera2D
 
-@export var target: Node2D
+@export var suavidade := 5.0
+@export var alvo: Node2D
 
 func _process(delta):
-	if target:
-		# Atualiza apenas o eixo X (horizontal)
-		global_position.x = target.global_position.x
+	if not alvo:
+		return
+	var pos_alvo = alvo.global_position
+	global_position = global_position.lerp(pos_alvo, suavidade * delta)
