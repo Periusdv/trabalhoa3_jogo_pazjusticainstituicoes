@@ -8,6 +8,9 @@ size = Vector2(46, 56.25)
 
 [node name="Estintor" type="Area2D"]
 script = ExtResource("1_tkfan")
+fall_gravity = null
+bounce = null
+floor_y = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(65.4265, 45)

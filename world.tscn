@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://btob2ibsxxka1"]
 
 [ext_resource type="PackedScene" uid="uid://dx4oo34vh47qc" path="res://back_grond.tscn" id="1_dwbse"]
-[ext_resource type="Script" path="res://world.gd" id="1_ic0uy"]
+[ext_resource type="Script" uid="uid://d1u76dbitxv6c" path="res://world.gd" id="1_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://bo3agc564g32n" path="res://player.tscn" id="2_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bfv1ckpkmbpy7" path="res://ground.tscn" id="3_036b0"]
 [ext_resource type="PackedScene" uid="uid://bbl7hfb1ctu0y" path="res://predio_especial_2d.tscn" id="3_ioo17"]
@@ -120,13 +120,13 @@ position = Vector2(10030, 328)
 position = Vector2(10454, 470)
 
 [node name="fogo29" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(10760, 191)
+position = Vector2(10765, 125)
 
 [node name="fogo30" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(10918, 187)
+position = Vector2(10901, 128)
 
 [node name="fogo31" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(10825, 327)
+position = Vector2(10844, 254)
 
 [node name="fogo7" parent="." instance=ExtResource("5_036b0")]
 position = Vector2(1349, 54)
