@@ -4,7 +4,7 @@
 
 [sub_resource type="Animation" id="Animation_ye7fo"]
 resource_name = "scroll"
-length = 3.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -12,10 +12,10 @@ tracks/0/path = NodePath("Label:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(100, 600), Vector2(100, -400)]
+"values": [Vector2(0, 300), Vector2(0, -600)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -24,7 +24,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.03333),
+"times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -44,10 +44,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(100, 600)]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vcau"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ix241"]
 _data = {
 &"RESET": SubResource("Animation_ix241"),
 &"scroll": SubResource("Animation_ye7fo")
@@ -55,28 +55,33 @@ _data = {
 
 [node name="Cutscene" type="Control"]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -552.0
-offset_bottom = -48.0
+anchor_bottom = 0.723
+offset_right = -152.0
+offset_bottom = 31.496
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_ye7fo")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-offset_left = 100.0
-offset_top = 600.0
-offset_right = 274.0
-offset_bottom = 701.0
-text = "O Bombeiro está em uma missão para salvar a cidade.
-"
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 100.0
+offset_bottom = 661.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Os bombeiros desempenham um papel importante para a sociedade, pois eles fornecem segurança e bem-estar para a comunidade. Além de combater incêndios e salvar vidas.
+Para ser um bombeiro é necessário ter coragem e prontidão para ser preciso quando acidentes ou incêndios aconteçam, mas acima de tudo garantir segurança e medidas de segurança para a população.
+Agora o jogo vai começar, procure pelo extintor para apagar os fogos e impedir que a cidade seja destruída."
 autowrap_mode = 3
+clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_8vcau")
+&"": SubResource("AnimationLibrary_ix241")
 }
-autoplay = "scroll"
-speed_scale = 0.17
+speed_scale = 0.2
