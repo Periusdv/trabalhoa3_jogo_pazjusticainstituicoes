@@ -1,8 +1,7 @@
 extends Control
 
-func _ready() -> void:
-	pass # Replace with function body.
+func _ready():
+	$AnimationPlayer.play("scroll")
 
-
-func _process(delta: float) -> void:
-	pass
+func start_game():
+	get_tree().change_scene_to_file("res://world.tscn")
