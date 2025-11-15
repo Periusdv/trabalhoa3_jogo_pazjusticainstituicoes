@@ -1,13 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo3agc564g32n"]
+[gd_scene load_steps=12 format=3 uid="uid://bo3agc564g32n"]
 
 [ext_resource type="Script" uid="uid://bldhmkkwjygee" path="res://player.gd" id="1_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://c7ib5l772gcyk" path="res://assets/NovoBombeiro1.png" id="2_nvl01"]
 [ext_resource type="Texture2D" uid="uid://cc0lckfcjpw4b" path="res://assets/NovoBombeiro2.png" id="3_ivps1"]
 [ext_resource type="Texture2D" uid="uid://cb3fiuh2xpoxm" path="res://assets/NovoBombeiro3.png" id="4_urp6f"]
-[ext_resource type="Texture2D" uid="uid://c85abjvqvgrwa" path="res://assets/BombeiroExtintorFumaca1.png" id="5_nvl01"]
 [ext_resource type="AudioStream" uid="uid://8xpco82pbyv4" path="res://assets/jump.wav" id="6_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://it2n67usymiy" path="res://assets/BombeiroExtintorFumaca2.png" id="6_ivps1"]
-[ext_resource type="Texture2D" uid="uid://dtdu017edmotv" path="res://assets/BombeiroExtintorFumaca3.png" id="7_urp6f"]
 [ext_resource type="Texture2D" uid="uid://dp40d4ivk5xt0" path="res://assets/NovoBombeiroExtintor1.png" id="8_bwjto"]
 [ext_resource type="Texture2D" uid="uid://dhyxaap00cnrr" path="res://assets/NovoBombeiroExtintor2.png" id="9_606se"]
 [ext_resource type="Texture2D" uid="uid://dwweuuwn5vxw6" path="res://assets/NovoBombeiroExtintor3.png" id="10_u1c27"]
@@ -26,24 +23,37 @@ animations = [{
 "texture": ExtResource("4_urp6f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_nvl01")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_nvl01")
+"texture": ExtResource("3_ivps1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ivps1")
+"texture": ExtResource("4_urp6f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_urp6f")
+"texture": ExtResource("3_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_urp6f")
 }],
 "loop": true,
-"name": &"fumaça",
+"name": &"default",
 "speed": 5.0
 }, {
 "frames": [{
@@ -57,7 +67,34 @@ animations = [{
 "texture": ExtResource("10_u1c27")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_bwjto")
+"texture": ExtResource("9_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u1c27")
 }],
 "loop": true,
 "name": &"super",
@@ -75,8 +112,7 @@ script = ExtResource("1_2hs0m")
 position = Vector2(43, 86.5)
 scale = Vector2(0.813333, 0.663333)
 sprite_frames = SubResource("SpriteFrames_dw050")
-frame = 3
-frame_progress = 1.0
+frame_progress = 0.50894
 speed_scale = 1.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
