@@ -31,7 +31,7 @@ position = Vector2(6182, 618)
 position = Vector2(10739, 604)
 
 [node name="Predio expecias" parent="." instance=ExtResource("3_ioo17")]
-position = Vector2(10741, 251)
+position = Vector2(10749, 278)
 
 [node name="HUD" parent="." instance=ExtResource("4_wse8f")]
 
@@ -120,13 +120,13 @@ position = Vector2(10030, 328)
 position = Vector2(10454, 470)
 
 [node name="fogo29" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(10765, 125)
+position = Vector2(10779, 160)
 
 [node name="fogo30" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(10901, 128)
+position = Vector2(10915, 159)
 
 [node name="fogo31" parent="." instance=ExtResource("5_036b0")]
-position = Vector2(10844, 254)
+position = Vector2(10817, 277)
 
 [node name="fogo7" parent="." instance=ExtResource("5_036b0")]
 position = Vector2(1349, 54)
@@ -134,7 +134,7 @@ position = Vector2(1349, 54)
 [node name="fogo4" parent="." instance=ExtResource("5_036b0")]
 position = Vector2(1615, 366)
 
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_aqk2v")
 autoplay = true
 
