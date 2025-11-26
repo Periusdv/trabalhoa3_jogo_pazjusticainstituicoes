@@ -201,6 +201,9 @@ func _on_restart_game():
 func shoot_fumaça():
 	if not smoke_scene:
 		return
+	
+	$SomExtintor.play()
+
 	var fumaça = smoke_scene.instantiate()
 	get_parent().add_child(fumaça)
 	var offset = Vector2(40 * facing_dir, 10)
